@@ -1,0 +1,101 @@
+spring:
+  rabbitmq:
+    # RabbitMQ的主机地址
+    host: localhost
+    # 登录到RabbitMQ的用户名
+    username: guest
+    # 登录到RabbitMQ的密码
+    password:
+    # RabbitMQ的端口号
+    port: 5672
+    # 连接到RabbitMQ的虚拟主机
+    virtual-host:
+    # 客户端连接的地址，有多个的时候使用逗号分隔，该地址可以是IP与Port的结合
+    addresses:
+    # 开启Publisher Confirm机制
+    publisher-confirms: false
+    # 开启publisher Return机制
+    publisher-returns: false
+    # 请求心跳超时时间，单位为秒
+    requested-heartbeat:
+    # 连接超时参数单位为毫秒：设置为“0”代表无穷大
+    connection-timeout:
+    # 默认创建一个AmqpAdmin的Bean
+    dynamic: true
+    cache:
+      channel:
+        # 当缓存已满时，获取Channel的等待时间，单位为毫秒
+        checkout-timeout:
+        # 缓存中保持的Channel数量
+        size:
+      connection:
+        # 连接缓存的模式
+        mode: channel
+        # 缓存的连接数
+        size:
+    listener:
+      direct:
+        # 容器的acknowledge模式
+        acknowledge-mode: none
+        # 启动时自动启动容器
+        auto-startup: true
+        consumers-per-queue:
+        default-requeue-rejected: true
+        retry:
+          multiplier: 1.0
+      simple:
+        # 消费者的最小数量
+        concurrency:
+        # 消费者的最大数量
+        max-concurrency:
+        # 	在单个请求中处理的消息个数，他应该大于等于事务数量
+        prefetch:
+        # 投递失败时是否重新排队
+        default-requeue-rejected: true
+        retry:
+          # 不论是不是重试的发布
+          enabled: false
+          # 第一次与第二次投递尝试的时间间隔
+          initial-interval: 1s
+          # 尝试投递消息的最大数量
+          max-attempts: 3
+          # 两次尝试的最大时间间隔
+          max-interval: 10s
+          # 上一次尝试时间间隔的乘数
+          multiplier: 1
+          # 不论重试是有状态的还是无状态的
+          stateless: true
+        # 在一个事务中处理的消息数量。为了获得最佳效果，该值应设置为小于等于每个请求中处理的消息个数，即spring.rabbitmq.listener.prefetch的值
+        transaction-size:
+    ssl:
+      # 启用SSL支持
+      enabled: false
+      # 保存SSL证书的地址
+      key-store:
+      # 访问SSL证书的地址使用的密码
+      key-store-password:
+      # SSL的可信地址
+      trust-store:
+      # 访问SSL的可信地址的密码
+      trust-store-password:
+      trust-store-type: JKS
+      algorithm:
+    template:
+      # 启用强制信息
+      mandatory: false
+      # receive()方法的超时时间
+      receive-timeout: 0s
+      # endAndReceive()方法的超时时间
+      reply-timeout: 5s
+      retry:
+        # 设置为true的时候RabbitTemplate能够实现重试
+        enabled: false
+        # 第一次与第二次发布消息的时间间隔
+        initial-interval: 1s
+        # 尝试发布消息的最大数量
+        max-attempts: 3
+        # 上一次尝试时间间隔的乘数
+        multiplier: 1
+        # 尝试发布消息的最大时间间隔
+        max-interval: 10s
+

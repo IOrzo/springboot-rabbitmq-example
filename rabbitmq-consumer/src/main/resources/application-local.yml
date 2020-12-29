@@ -1,0 +1,16 @@
+spring:
+  rabbitmq:
+    host: 47.93.239.109
+    port: 5672
+    username: rabbitmq
+    password: rabbitmq
+    virtual-host: /example
+#    listener:
+#      simple:
+#        transaction-size: 1
+#        # 并发消费者的初始化值
+#        concurrency: 1
+#        # 并发消费者的最大值
+#        max-concurrency: 1
+#        # 消费者每次监听时可拉取处理的消息数量
+#        prefetch: 1

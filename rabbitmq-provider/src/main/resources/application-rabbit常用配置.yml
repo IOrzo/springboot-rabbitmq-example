@@ -1,0 +1,17 @@
+spring:
+  rabbitmq:
+    host: localhost
+    username: guest
+    password:
+    port: 5672
+    virtual-host:
+    # 确认消息已发送到交换机(Exchange)
+    publisher-confirms: true
+    # 确认消息已发送到队列(Queue)
+    publisher-returns: true
+    listener:
+      simple:
+        concurrency: 1
+        max-concurrency: 1
+        prefetch: 1
+        transaction-size: 1

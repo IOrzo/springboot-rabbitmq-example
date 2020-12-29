@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: rabbitmq-consumer
+  profiles:
+    active: local
+server:
+  port: 8082

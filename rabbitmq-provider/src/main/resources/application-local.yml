@@ -1,0 +1,12 @@
+spring:
+  rabbitmq:
+    host: 47.93.239.109
+    port: 5672
+    username: rabbitmq
+    password: rabbitmq
+    virtual-host: /example
+    #消息确认配置项
+    #确认消息已发送到交换机(Exchange)
+    publisher-confirms: true
+    #确认消息已发送到队列(Queue)
+    publisher-returns: true
