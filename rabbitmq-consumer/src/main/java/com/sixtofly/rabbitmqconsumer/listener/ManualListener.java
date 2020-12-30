@@ -2,7 +2,7 @@ package com.sixtofly.rabbitmqconsumer.listener;
 
 import com.alibaba.fastjson.JSONObject;
 import com.rabbitmq.client.Channel;
-import com.sixtofly.rabbitmqconsumer.entity.RabbitMessage;
+import com.sixtofly.rabbitmqcommon.entity.RabbitMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.listener.api.ChannelAwareMessageListener;

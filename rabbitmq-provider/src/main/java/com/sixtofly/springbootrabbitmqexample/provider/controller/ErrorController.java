@@ -1,7 +1,7 @@
 package com.sixtofly.springbootrabbitmqexample.provider.controller;
 
-import com.sixtofly.springbootrabbitmqexample.provider.constants.RabbitConstants;
-import com.sixtofly.springbootrabbitmqexample.provider.entity.RabbitMessage;
+import com.sixtofly.rabbitmqcommon.constants.RabbitConstants;
+import com.sixtofly.rabbitmqcommon.entity.RabbitMessage;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

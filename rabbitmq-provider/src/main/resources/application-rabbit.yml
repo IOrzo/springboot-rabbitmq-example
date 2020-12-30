@@ -48,7 +48,7 @@ spring:
         concurrency:
         # 消费者的最大数量
         max-concurrency:
-        # 	在单个请求中处理的消息个数，他应该大于等于事务数量
+        # 在单个请求中处理的消息个数，他应该大于等于事务数量
         prefetch:
         # 投递失败时是否重新排队
         default-requeue-rejected: true

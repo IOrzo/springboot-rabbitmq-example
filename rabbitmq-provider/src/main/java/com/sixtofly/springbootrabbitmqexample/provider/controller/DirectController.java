@@ -1,7 +1,7 @@
 package com.sixtofly.springbootrabbitmqexample.provider.controller;
 
-import com.sixtofly.springbootrabbitmqexample.provider.constants.RabbitConstants;
-import com.sixtofly.springbootrabbitmqexample.provider.entity.RabbitMessage;
+import com.sixtofly.rabbitmqcommon.constants.RabbitConstants;
+import com.sixtofly.rabbitmqcommon.entity.RabbitMessage;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +37,32 @@ public class DirectController {
         RabbitMessage msg = new RabbitMessage(message);
         // 方式消息
         rabbitTemplate.convertAndSend(RabbitConstants.EXCHANGE_DIRECT, RabbitConstants.ROUTING_KEY_INDEPENDENT_LISTENER, msg);
+        return "ok";
+    }
+
+    /**
+     * 发送自动应答重试消息
+     * @param message
+     * @return
+     */
+    @GetMapping("/sendAutoRetryMessage")
+    public String sendAutoRetryMessage(String message){
+        RabbitMessage msg = new RabbitMessage(message);
+        // 方式消息
+        rabbitTemplate.convertAndSend(RabbitConstants.EXCHANGE_DIRECT, RabbitConstants.ROUTING_KEY_AUTO_RETRY, msg);
+        return "ok";
+    }
+
+    /**
+     * 发送手动应答重试消息
+     * @param message
+     * @return
+     */
+    @GetMapping("/sendManualRetryMessage")
+    public String sendManualRetryMessage(String message){
+        RabbitMessage msg = new RabbitMessage(message);
+        // 方式消息
+        rabbitTemplate.convertAndSend(RabbitConstants.EXCHANGE_DIRECT, RabbitConstants.ROUTING_KEY_MANUAL_RETRY, msg);
         return "ok";
     }
 }

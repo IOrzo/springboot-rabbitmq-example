@@ -5,12 +5,29 @@ spring:
     username: rabbitmq
     password: rabbitmq
     virtual-host: /example
-#    listener:
-#      simple:
-#        transaction-size: 1
-#        # 并发消费者的初始化值
-#        concurrency: 1
-#        # 并发消费者的最大值
-#        max-concurrency: 1
-#        # 消费者每次监听时可拉取处理的消息数量
-#        prefetch: 1
+    listener:
+      simple:
+        # 自动ACK
+        acknowledge-mode: auto
+        transaction-size: 1
+        # 并发消费者的初始化值
+        concurrency: 1
+        # 并发消费者的最大值
+        max-concurrency: 1
+        # 消费者每次监听时可拉取处理的消息数量
+        prefetch: 1
+        retry:
+          # 重试机制不是rabbitmq本身的,是spring实现的
+          enabled: true
+          # 重试最大次数
+          # 经测试, 最大次数可以理解为调用次数, 当最大次数为1时, 可认为没有重试机制
+          # 重试次数 = 最大次数 - 1
+          # 6次的执行间隔时间为依次为:
+          # 0s 2s 4s 8s 10s 10s
+          max-attempts: 6
+          # 重试最大间隔时间 10s
+          max-interval: 10000
+          # 重试初始间隔时间 2s
+          initial-interval: 2000
+          # 间隔时间乘子，间隔时间*乘子=下一次的间隔时间，最大不能超过设置的最大间隔时间
+          multiplier: 2

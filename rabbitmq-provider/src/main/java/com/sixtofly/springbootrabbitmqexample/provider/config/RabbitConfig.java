@@ -68,7 +68,7 @@ public class RabbitConfig {
          * 不会执行该回调函数
          *
          * 失败示例:
-         * message(消息): {"body":"eyJpZCI6IjdiOWI4NGJjLTAzNzgtNGM1My1iM2Y1LWE5ZWRhNmU1YzY5ZSIsImRhdGEiOiJzZW5kTm90RXhpc3RzUXVldWUiLCJjcmVhdGVUaW1lIjoxNjA4NzE1MzM5OTgyfQ==","messageProperties":{"contentEncoding":"UTF-8","contentLength":0,"contentType":"application/json","deliveryTag":0,"finalRetryForMessageWithNoId":false,"headers":{"__TypeId__":"com.sixtofly.springbootrabbitmqexample.provider.entity.RabbitMessage"},"priority":0,"publishSequenceNumber":0,"receivedDeliveryMode":"PERSISTENT"}}
+         * message(消息): {"body":"eyJpZCI6IjdiOWI4NGJjLTAzNzgtNGM1My1iM2Y1LWE5ZWRhNmU1YzY5ZSIsImRhdGEiOiJzZW5kTm90RXhpc3RzUXVldWUiLCJjcmVhdGVUaW1lIjoxNjA4NzE1MzM5OTgyfQ==","messageProperties":{"contentEncoding":"UTF-8","contentLength":0,"contentType":"application/json","deliveryTag":0,"finalRetryForMessageWithNoId":false,"headers":{"__TypeId__":"com.sixtofly.rabbitmqcommon.entity.RabbitMessage"},"priority":0,"publishSequenceNumber":0,"receivedDeliveryMode":"PERSISTENT"}}
          * replyCode(回应码): 312
          * replyText(回应信息): NO_ROUTE
          * exchange(交换机): EXCHANGE_DIRECT

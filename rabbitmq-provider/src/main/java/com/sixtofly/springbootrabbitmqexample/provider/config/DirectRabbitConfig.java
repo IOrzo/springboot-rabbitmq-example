@@ -1,6 +1,6 @@
 package com.sixtofly.springbootrabbitmqexample.provider.config;
 
-import com.sixtofly.springbootrabbitmqexample.provider.constants.RabbitConstants;
+import com.sixtofly.rabbitmqcommon.constants.RabbitConstants;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
@@ -19,7 +19,6 @@ public class DirectRabbitConfig {
 
     /**
      * 声明交换机
-     * @return
      */
     @Bean
     public DirectExchange directExchange() {
@@ -28,7 +27,6 @@ public class DirectRabbitConfig {
 
     /**
      * 声明队列
-     * @return
      */
     @Bean
     public Queue directQueue() {
@@ -40,10 +38,25 @@ public class DirectRabbitConfig {
         return new Queue(RabbitConstants.QUEUE_INDEPENDENT_LISTENER);
     }
 
+    /**
+     * 自动应答重试
+     */
+    @Bean
+    public Queue autoRetryQueue() {
+        return new Queue(RabbitConstants.QUEUE_AUTO_RETRY);
+    }
+
+    /**
+     * 手动应答重试
+     */
+    @Bean
+    public Queue manualRetryQueue() {
+        return new Queue(RabbitConstants.QUEUE_MANUAL_RETRY);
+    }
+
 
     /**
      * 声明绑定关系
-     * @return
      */
     @Bean
     public Binding directBinding () {
@@ -53,6 +66,16 @@ public class DirectRabbitConfig {
     @Bean
     public Binding independentListenerBinding() {
         return BindingBuilder.bind(independentListenerQueue()).to(directExchange()).with(RabbitConstants.ROUTING_KEY_INDEPENDENT_LISTENER);
+    }
+
+    @Bean
+    public Binding autoRetryBinding() {
+        return BindingBuilder.bind(autoRetryQueue()).to(directExchange()).with(RabbitConstants.ROUTING_KEY_AUTO_RETRY);
+    }
+
+    @Bean
+    public Binding manualRetryBinding() {
+        return BindingBuilder.bind(manualRetryQueue()).to(directExchange()).with(RabbitConstants.ROUTING_KEY_MANUAL_RETRY);
     }
 
 

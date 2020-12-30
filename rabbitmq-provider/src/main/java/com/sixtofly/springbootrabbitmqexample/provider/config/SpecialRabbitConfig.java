@@ -1,6 +1,6 @@
 package com.sixtofly.springbootrabbitmqexample.provider.config;
 
-import com.sixtofly.springbootrabbitmqexample.provider.constants.RabbitConstants;
+import com.sixtofly.rabbitmqcommon.constants.RabbitConstants;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
