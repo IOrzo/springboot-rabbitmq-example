@@ -1,18 +1,14 @@
 package com.sixtofly.rabbitmqconsumer.config;
 
 import com.sixtofly.rabbitmqcommon.constants.RabbitConstants;
-import com.sixtofly.rabbitmqconsumer.listener.DlxListener;
-import com.sixtofly.rabbitmqconsumer.listener.ManualListener;
-import com.sixtofly.rabbitmqconsumer.listener.ManualRetryListener;
-import com.sixtofly.rabbitmqconsumer.listener.SimpleManualListener;
+import com.sixtofly.rabbitmqcommon.listener.config.EventListener;
+import com.sixtofly.rabbitmqconsumer.listener.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.retry.ImmediateRequeueMessageRecoverer;
 import org.springframework.amqp.rabbit.retry.MessageRecoverer;
-import org.springframework.amqp.rabbit.retry.RejectAndDontRequeueRecoverer;
 import org.springframework.amqp.rabbit.retry.RepublishMessageRecoverer;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,6 +127,27 @@ public class RabbitConfig {
         // 根据参数重新将消息发布到指定交换机中
         return new RepublishMessageRecoverer(rabbitTemplate, RabbitConstants.EXCHANGE_DLX, RabbitConstants.ROUTING_KEY_DLX_CONTAINER);
 //        return new RejectAndDontRequeueRecoverer();
+    }
+
+    /**
+     * 业务统一处理监听器
+     * @param connectionFactory
+     * @return
+     */
+    @Bean
+    public SimpleMessageListenerContainer eventListenerContainer(ConnectionFactory connectionFactory, EventListener eventListener) {
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory);
+        // 消费者数量
+        container.setConcurrentConsumers(1);
+        // 消费者最大数量
+        container.setMaxConcurrentConsumers(1);
+        // 获取消息数量
+        container.setPrefetchCount(1);
+        container.setTxSize(1);
+        container.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+        container.addQueueNames(RabbitConstants.QUEUE_BUSINESS);
+        container.setMessageListener(eventListener);
+        return container;
     }
 
 

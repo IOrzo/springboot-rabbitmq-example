@@ -90,6 +90,11 @@ public interface RabbitConstants {
      */
     String QUEUE_MANUAL_RETRY = "QUEUE_MANUAL_RETRY";
 
+    /**
+     * 业务队列
+     */
+    String QUEUE_BUSINESS = "QUEUE_BUSINESS";
+
     // 路由常量
 
     String ROUTING_KEY_DIRECT = "ROUTING_KEY_DIRECT";
@@ -141,5 +146,10 @@ public interface RabbitConstants {
      * 手动应答重试
      */
     String ROUTING_KEY_MANUAL_RETRY = "ROUTING_KEY_MANUAL_RETRY";
+
+    /**
+     * 业务队列路由
+     */
+    String ROUTING_KEY_BUSINESS = "ROUTING_KEY_BUSINESS";
 
 }

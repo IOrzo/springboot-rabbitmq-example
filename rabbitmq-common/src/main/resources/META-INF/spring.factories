@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.sixtofly.rabbitmqcommon.listener.config.ApplicationEventListenerAutoConfiguration

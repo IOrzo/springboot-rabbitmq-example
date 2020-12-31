@@ -19,14 +19,6 @@ import java.util.Map;
 public class SpecialRabbitConfig {
 
     /**
-     * 业务交换机
-     */
-    @Bean
-    public DirectExchange businessExchange() {
-        return new DirectExchange(RabbitConstants.EXCHANGE_BUSINESS, true, false);
-    }
-
-    /**
      * 声明死信交换机
      */
     @Bean
